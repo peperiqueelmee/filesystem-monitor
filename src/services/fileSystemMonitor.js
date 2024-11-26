@@ -1,4 +1,5 @@
 const { executeCommand } = require('../utils/commandUtil.js');
+const { log } = require('../utils/logger');
 const config = require('../config/config.js');
 
 const monitorFilesystem = async () => {
@@ -27,7 +28,7 @@ const monitorFilesystem = async () => {
 
       if (!isNaN(usage) && usage >= config.THRESHOLD) {
         const alertMessage = `⚠️ Alert: The filesystem "${filesystem}" mounted on "${mount}" is at ${usage}% usage.`;
-        console.log(alertMessage);
+        log(alertMessage);
         alerts.push(alertMessage);
       }
     });
